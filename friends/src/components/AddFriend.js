@@ -11,11 +11,11 @@ const Signup = () => {
               <p className='h5 text-center mb-4'>Add a friend</p>
 
               <div className='grey-text'>
-                <MDBInput label='Name' icon='user' group type='text' />
+                <MDBInput label='Name' icon='user' group type='text' required />
 
-                <MDBInput label='Email' icon='envelope' group type='email' />
+                <MDBInput label='Email' icon='envelope' type='email' required />
 
-                <MDBInput label='Age' icon='beer' group type='number' />
+                <MDBInput label='Age' icon='beer' type='number' required />
               </div>
 
               <div className='text-center'>

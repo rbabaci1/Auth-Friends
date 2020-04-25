@@ -9,9 +9,13 @@ export default function Navbar() {
       </Link>
 
       <nav>
-        <NavLink to='/login'>Login</NavLink>
+        <NavLink to='/login' activeClassName='active-link'>
+          Login
+        </NavLink>
 
-        <NavLink to='/addFriend'>Add friend</NavLink>
+        <NavLink to='/addFriend' activeClassName='active-link'>
+          Add friend
+        </NavLink>
       </nav>
     </div>
   );
