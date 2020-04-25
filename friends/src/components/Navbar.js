@@ -7,14 +7,24 @@ export default function Navbar() {
 
   return (
     <div className='nav-bar'>
-      <Link to='/'>
-        <h1>Welcome Friends!</h1>
-      </Link>
+      {isLoggedIn ? (
+        <h1 id='no-hover'>Welcome Friends!</h1>
+      ) : (
+        <Link to='/'>
+          <h1>Welcome Friends!</h1>
+        </Link>
+      )}
 
       <nav>
-        <NavLink to='/login' activeClassName='active-link'>
-          Login
-        </NavLink>
+        {isLoggedIn ? (
+          <NavLink to='/logout' activeClassName='active-link'>
+            Log out
+          </NavLink>
+        ) : (
+          <NavLink to='/login' activeClassName='active-link'>
+            Login
+          </NavLink>
+        )}
 
         {isLoggedIn && (
           <NavLink to='/addFriend' activeClassName='active-link'>

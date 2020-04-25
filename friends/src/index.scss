@@ -45,6 +45,9 @@ code {
       font-weight: 500;
     }
   }
+  #no-hover {
+    pointer-events: none;
+  }
 
   nav {
     a {
