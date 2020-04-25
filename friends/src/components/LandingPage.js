@@ -34,7 +34,7 @@ export default function LandingPage() {
         loading: false,
       });
       history.push('/friendsList');
-    }, 2000);
+    }, 1500);
     // setUserInput(userLoginInitial);
   };
 
