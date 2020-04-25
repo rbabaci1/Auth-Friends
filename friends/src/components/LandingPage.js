@@ -8,7 +8,7 @@ import AddFriend from './AddFriend';
 import Home from './Home';
 import loginContext from '../contexts/loginContext';
 import FriendsList from './FriendsList';
-import PrivateFriends from '../PrivateRoutes/PrivateFriends';
+import PrivateRoute from '../PrivateRoutes/PrivateRoute';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 export default function LandingPage() {
@@ -75,9 +75,8 @@ export default function LandingPage() {
       </loginContext.Provider>
 
       {/* // private routes */}
-      <PrivateFriends exact path='/friendsList' component={FriendsList} />
-
-      <Route path='/addFriend' component={AddFriend} />
+      <PrivateRoute path='/friendsList' component={FriendsList} />
+      <PrivateRoute path='/addFriend' component={AddFriend} />
     </div>
   );
 }
