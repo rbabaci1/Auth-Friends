@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import { userLoginInitial } from '../initialStates';
-import { setLoading, setError } from '../helpers';
+import { setLoading, setError, setLoggedIn } from '../helpers';
 import Navbar from './Navbar';
 import Login from './Login';
 import AddFriend from './AddFriend';
@@ -30,7 +30,7 @@ export default function LandingPage() {
       axiosWithAuth
         .post('/login', userInput)
         .then((res) => {
-          setUserInput(userLoginInitial);
+          setLoggedIn(userLoginInitial, setUserInput);
 
           const token = res.data.payload;
 
