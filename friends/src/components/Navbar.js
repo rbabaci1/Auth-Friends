@@ -8,7 +8,7 @@ export default function Navbar({ history }) {
 
   return (
     <div className='nav-bar'>
-      {isLoggedIn ? (
+      {isLoggedIn || history.location.pathname === '/' ? (
         <h1 id='no-hover'>Welcome Friends!</h1>
       ) : (
         <Link to='/'>
