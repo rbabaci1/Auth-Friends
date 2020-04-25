@@ -17,7 +17,7 @@ code {
     margin: 15px 0;
   }
 }
-.landing-page {
+.nav-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,5 +56,12 @@ code {
 .active {
   border-bottom: 1px solid;
 }
+
 .sign-in {
+  margin: 50px 0 10px 0;
+  display: flex;
+
+  .row {
+    justify-content: center;
+  }
 }
