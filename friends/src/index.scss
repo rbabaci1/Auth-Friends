@@ -47,13 +47,10 @@ code {
   }
 
   nav {
-    display: flex;
-    justify-content: space-between;
-    width: 150px;
-
     a {
       font-size: 20px;
       color: #f7f7f7;
+      margin: 0 15px;
 
       &:hover {
         border-bottom: 1px solid;
@@ -66,13 +63,12 @@ code {
   border-bottom: 1px solid;
 }
 
-.sign-in {
+.form {
   padding: 50px 0 10px 0;
   display: flex;
   background-color: rgb(252, 250, 246);
   height: 90vh;
-
-  .row {
-    justify-content: center;
-  }
+}
+.row {
+  justify-content: center;
 }

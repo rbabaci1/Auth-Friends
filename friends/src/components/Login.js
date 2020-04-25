@@ -24,7 +24,7 @@ export default function Login() {
   };
 
   return (
-    <div className='sign-in'>
+    <div className='form'>
       <MDBContainer>
         <MDBRow>
           <MDBCol md='6'>

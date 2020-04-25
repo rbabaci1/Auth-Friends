@@ -11,7 +11,7 @@ export default function Navbar() {
       <nav>
         <NavLink to='/login'>Login</NavLink>
 
-        <NavLink to='/signup'>Signup</NavLink>
+        <NavLink to='/addFriend'>Add friend</NavLink>
       </nav>
     </div>
   );

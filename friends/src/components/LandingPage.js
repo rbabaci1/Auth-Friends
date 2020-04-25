@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import Navbar from './Navbar';
 import Login from './Login';
-import Signup from './Signup';
+import AddFriend from './AddFriend';
 import Home from './Home';
 
 export default function LandingPage() {
@@ -12,7 +12,7 @@ export default function LandingPage() {
 
       <Route exact path='/' component={Home} />
       <Route path='/login' component={Login} />
-      <Route path='/signup' component={Signup} />
+      <Route path='/addFriend' component={AddFriend} />
     </div>
   );
 }
