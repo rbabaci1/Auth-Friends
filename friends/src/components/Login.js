@@ -3,7 +3,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
 import loginContext from '../contexts/loginContext';
 import Spinner from './Spinner';
 
-export default function Login() {
+export default function Login({ history }) {
   const { userInput, handleChange, handleLogin } = useContext(loginContext);
 
   return (
@@ -11,7 +11,7 @@ export default function Login() {
       <MDBContainer>
         <MDBRow>
           <MDBCol md='6'>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={(e) => handleLogin(e, history)}>
               <p className='h5 text-center mb-4'>Log in</p>
 
               <div className='grey-text'>

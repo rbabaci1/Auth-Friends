@@ -18,22 +18,24 @@ export default function LandingPage() {
       [e.target.name]: e.target.value,
     });
   };
-  const handleLogin = (e) => {
+  const handleLogin = (e, history) => {
     e.preventDefault();
+
     setUserInput({
       ...setUserInput,
       loading: true,
     });
 
     // user authentication
-    console.log(JSON.stringify(userInput));
-    // setUserInput(userLoginInitial);
+    // console.log(JSON.stringify(userInput));
     setTimeout(() => {
       setUserInput({
         ...setUserInput,
         loading: false,
       });
+      history.push('/friendsList');
     }, 2000);
+    // setUserInput(userLoginInitial);
   };
 
   return (
