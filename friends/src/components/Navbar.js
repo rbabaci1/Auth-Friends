@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import loginContext from '../contexts/loginContext';
 
-export default function Navbar() {
+export default function Navbar(props) {
   const { isLoggedIn } = useContext(loginContext);
-
+  console.log(props);
   return (
     <div className='nav-bar'>
       {isLoggedIn ? (

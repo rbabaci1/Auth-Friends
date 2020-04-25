@@ -47,7 +47,7 @@ export default function LandingPage() {
   return (
     <div className='landing-page'>
       <loginContext.Provider value={{ isLoggedIn: userInput.isLoggedIn }}>
-        <Navbar />
+        <Route component={Navbar} />
       </loginContext.Provider>
 
       <Route exact path='/' component={Home} />
