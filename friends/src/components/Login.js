@@ -37,7 +37,7 @@ export default function Login({ history }) {
               </div>
 
               <div className='text-center'>
-                {userInput.loading && <Spinner />}
+                {userInput.loading && <Spinner action='login' />}
 
                 <MDBBtn
                   type='submit'

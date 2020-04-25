@@ -1,11 +1,17 @@
 import React from 'react';
 
-const Spinner = () => {
+const Spinner = ({ action }) => {
   return (
     <>
-      <div className='spinner-border text-success' role='status'>
-        <span className='sr-only'>Loading...</span>
-      </div>
+      {action === 'login' ? (
+        <div className='spinner-border text-success' role='status'>
+          <span className='sr-only'>Loading...</span>
+        </div>
+      ) : (
+        <div className='spinner-grow' role='status'>
+          <span className='sr-only'>Loading...</span>
+        </div>
+      )}
     </>
   );
 };

@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import loginContext from '../contexts/loginContext';
+import Spinner from './Spinner';
 
 export default function Navbar({ history }) {
-  const { isLoggedIn, handleLogout } = useContext(loginContext);
+  const { loading, isLoggedIn, handleLogout } = useContext(loginContext);
 
   return (
     <div className='nav-bar'>
@@ -18,7 +19,7 @@ export default function Navbar({ history }) {
       <nav>
         {isLoggedIn ? (
           <a href='#' onClick={(e) => handleLogout(e, history)}>
-            Log out
+            {loading && <Spinner action='logout' />} Log out
           </a>
         ) : (
           <NavLink to='/login' activeClassName='active-link'>

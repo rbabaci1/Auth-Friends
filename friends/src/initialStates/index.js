@@ -1,4 +1,4 @@
-export const userLoginInitial = {
+export const userInitialState = {
   username: '',
   password: '',
   isLoggedIn: false,
