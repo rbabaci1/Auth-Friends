@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
 
+const initialState = {
+  email: '',
+  password: '',
+};
+
 export default function Login() {
+  const [userInput, setUserInput] = useState(initialState);
+
+  const handleChange = (e) => {
+    setUserInput({
+      ...userInput,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div className='sign-in'>
       <MDBContainer>
@@ -12,16 +26,19 @@ export default function Login() {
 
               <div className='grey-text'>
                 <MDBInput
+                  onChange={handleChange}
+                  name='email'
                   label='Type your email'
                   icon='envelope'
                   group
                   type='email'
-                  error='wrong'
                   success='yeah!!'
                   required
                 />
 
                 <MDBInput
+                  onChange={handleChange}
+                  name='password'
                   label='Type your password'
                   icon='lock'
                   group
