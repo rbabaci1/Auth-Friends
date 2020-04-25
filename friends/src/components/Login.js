@@ -18,6 +18,7 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // user authentication
     console.log(JSON.stringify(userInput));
     setUserInput(initialState);
   };
