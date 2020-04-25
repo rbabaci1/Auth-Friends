@@ -4,14 +4,14 @@ import loginContext from '../contexts/loginContext';
 import Spinner from './Spinner';
 
 export default function Login() {
-  const { userInput, handleChange, handleSubmit } = useContext(loginContext);
+  const { userInput, handleChange, handleLogin } = useContext(loginContext);
 
   return (
     <div className='form'>
       <MDBContainer>
         <MDBRow>
           <MDBCol md='6'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleLogin}>
               <p className='h5 text-center mb-4'>Log in</p>
 
               <div className='grey-text'>
