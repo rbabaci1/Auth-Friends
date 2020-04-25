@@ -18,10 +18,20 @@ export default function LandingPage() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setUserInput({
+      ...setUserInput,
+      loading: true,
+    });
 
     // user authentication
     console.log(JSON.stringify(userInput));
-    setUserInput(userLoginInitial);
+    // setUserInput(userLoginInitial);
+    setTimeout(() => {
+      setUserInput({
+        ...setUserInput,
+        loading: false,
+      });
+    }, 2000);
   };
 
   return (

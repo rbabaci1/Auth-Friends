@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
 import loginContext from '../contexts/loginContext';
+import Spinner from './Spinner';
 
 export default function Login() {
   const { userInput, handleChange, handleSubmit } = useContext(loginContext);
@@ -36,7 +37,14 @@ export default function Login() {
               </div>
 
               <div className='text-center'>
-                <MDBBtn type='submit'>Login</MDBBtn>
+                {userInput.loading && <Spinner />}
+
+                <MDBBtn
+                  type='submit'
+                  className={userInput.loading ? 'hide' : ''}
+                >
+                  Login
+                </MDBBtn>
               </div>
             </form>
           </MDBCol>
