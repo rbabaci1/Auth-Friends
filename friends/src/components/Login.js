@@ -12,7 +12,7 @@ export default function Login({ history }) {
         <MDBRow>
           <MDBCol md='6'>
             <form onSubmit={(e) => handleLogin(e, history)}>
-              <p className='h5 text-center mb-4'>Log in</p>
+              <p className='h4 text-center mb-4'>Log in</p>
 
               <div className='grey-text'>
                 <MDBInput
@@ -20,7 +20,7 @@ export default function Login({ history }) {
                   value={userInput.username}
                   name='username'
                   label='Type your username'
-                  icon='envelope'
+                  icon='user-circle'
                   type='text'
                   required
                 />

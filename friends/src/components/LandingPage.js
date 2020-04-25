@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import { userLoginInitial } from '../initialStates';
-import { setLoading } from '../helpers';
+import { setLoading, setError } from '../helpers';
 import Navbar from './Navbar';
 import Login from './Login';
 import AddFriend from './AddFriend';
@@ -20,32 +20,25 @@ export default function LandingPage() {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleLogin = (e, history) => {
     e.preventDefault();
 
     setLoading(userInput, setUserInput);
 
-    // user authentication
-
     setTimeout(() => {
       axiosWithAuth
         .post('/login', userInput)
         .then((res) => {
-          setUserInput({
-            ...userInput,
-            loading: false,
-            error: '',
-          });
+          setUserInput(userLoginInitial);
 
           const token = res.data.payload;
+
           localStorage.setItem('token', token);
           history.push('/friendsList');
         })
         .catch((err) => {
-          setUserInput({
-            ...userLoginInitial,
-            error: 'Username or Password not valid!',
-          });
+          setError(userInput, setUserInput);
           console.error(err);
         });
     }, 1500);
