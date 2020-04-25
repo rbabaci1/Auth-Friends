@@ -15,18 +15,25 @@ export default function Login() {
       [e.target.name]: e.target.value,
     });
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(JSON.stringify(userInput));
+    setUserInput(initialState);
+  };
 
   return (
     <div className='sign-in'>
       <MDBContainer>
         <MDBRow>
           <MDBCol md='6'>
-            <form>
+            <form onSubmit={handleSubmit}>
               <p className='h5 text-center mb-4'>Sign in</p>
 
               <div className='grey-text'>
                 <MDBInput
                   onChange={handleChange}
+                  value={userInput.email}
                   name='email'
                   label='Type your email'
                   icon='envelope'
@@ -39,6 +46,7 @@ export default function Login() {
                 <MDBInput
                   onChange={handleChange}
                   name='password'
+                  value={userInput.password}
                   label='Type your password'
                   icon='lock'
                   group
