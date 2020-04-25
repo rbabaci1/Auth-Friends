@@ -8,6 +8,7 @@ import Home from './Home';
 import loginContext from '../contexts/loginContext';
 import FriendsList from './FriendsList';
 import PrivateFriends from '../PrivateRoutes/PrivateFriends';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 export default function LandingPage() {
   const [userInput, setUserInput] = useState(userLoginInitial);
@@ -22,20 +23,34 @@ export default function LandingPage() {
     e.preventDefault();
 
     setUserInput({
-      ...setUserInput,
+      ...userInput,
       loading: true,
     });
 
     // user authentication
-    // console.log(JSON.stringify(userInput));
+
     setTimeout(() => {
-      setUserInput({
-        ...setUserInput,
-        loading: false,
-      });
-      history.push('/friendsList');
+      axiosWithAuth
+        .post('/login', userInput)
+        .then((res) => {
+          setUserInput({
+            ...userInput,
+            loading: false,
+            error: '',
+          });
+
+          const token = res.data.payload;
+          localStorage.setItem('token', token);
+          history.push('/friendsList');
+        })
+        .catch((err) => {
+          setUserInput({
+            ...userLoginInitial,
+            error: 'Username or Password not valid!',
+          });
+          console.error(err);
+        });
     }, 1500);
-    // setUserInput(userLoginInitial);
   };
 
   return (

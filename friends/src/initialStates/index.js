@@ -1,5 +1,5 @@
 export const userLoginInitial = {
-  email: '',
+  username: '',
   password: '',
   isLoggedIn: false,
   loading: false,

@@ -17,11 +17,11 @@ export default function Login({ history }) {
               <div className='grey-text'>
                 <MDBInput
                   onChange={handleChange}
-                  value={userInput.email}
-                  name='email'
-                  label='Type your email'
+                  value={userInput.username}
+                  name='username'
+                  label='Type your username'
                   icon='envelope'
-                  type='email'
+                  type='text'
                   required
                 />
 
