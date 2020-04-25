@@ -8,7 +8,7 @@ export default function Navbar({ history }) {
 
   return (
     <div className='nav-bar'>
-      {isLoggedIn ? (
+      {history.location.pathname === '/' ? (
         <h1 id='no-hover'>Welcome Friends!</h1>
       ) : (
         <Link to='/'>
@@ -22,6 +22,10 @@ export default function Navbar({ history }) {
             <a href='#' onClick={(e) => handleLogout(e, history)}>
               {loading && <Spinner action='logout' />} Log out
             </a>
+
+            <NavLink to='/friendsList' activeClassName='active-link'>
+              Friends
+            </NavLink>
 
             <NavLink to='/addFriend' activeClassName='active-link'>
               Add friend

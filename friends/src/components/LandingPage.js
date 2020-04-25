@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
+import { useLocalStorage } from 'react-use';
 import { userInitialState } from '../initialStates';
-import { setLoading, setError, setLoggedIn, setLoggedOut } from '../helpers';
+import { setLoading, setError } from '../helpers';
 import Navbar from './Navbar';
 import Login from './Login';
 import AddFriend from './AddFriend';
@@ -13,6 +14,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 export default function LandingPage() {
   const [userInput, setUserInput] = useState(userInitialState);
+  const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isLoggedIn', false);
 
   const handleChange = (e) => {
     setUserInput({
@@ -30,7 +32,8 @@ export default function LandingPage() {
       axiosWithAuth
         .post('/login', userInput)
         .then((res) => {
-          setLoggedIn(userInitialState, setUserInput);
+          setIsLoggedIn(true);
+          setUserInput({ ...userInput, loading: false, error: '' });
 
           const token = res.data.payload;
 
@@ -49,11 +52,12 @@ export default function LandingPage() {
     setLoading(userInput, setUserInput);
 
     setTimeout(() => {
-      setLoggedOut(userInitialState, setUserInput);
+      setIsLoggedIn(false);
+      setUserInput(userInitialState);
 
       localStorage.removeItem('token');
       history.push('/');
-    }, 1000);
+    }, 1200);
   };
 
   return (
@@ -61,7 +65,7 @@ export default function LandingPage() {
       <loginContext.Provider
         value={{
           loading: userInput.loading,
-          isLoggedIn: userInput.isLoggedIn,
+          isLoggedIn,
           handleLogout,
         }}
       >
