@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
-import LoginContext from '../contexts/loginContext';
+import loginContext from '../contexts/loginContext';
 
 export default function Login() {
-  const { userInput, handleChange, handleSubmit } = useContext(LoginContext);
+  const { userInput, handleChange, handleSubmit } = useContext(loginContext);
 
   return (
     <div className='form'>

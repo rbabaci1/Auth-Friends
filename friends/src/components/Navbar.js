@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import loginContext from '../contexts/loginContext';
 
 export default function Navbar() {
+  const { isLoggedIn } = useContext(loginContext);
+
   return (
     <div className='nav-bar'>
       <Link to='/'>
@@ -13,9 +16,11 @@ export default function Navbar() {
           Login
         </NavLink>
 
-        <NavLink to='/addFriend' activeClassName='active-link'>
-          Add friend
-        </NavLink>
+        {isLoggedIn && (
+          <NavLink to='/addFriend' activeClassName='active-link'>
+            Add friend
+          </NavLink>
+        )}
       </nav>
     </div>
   );
