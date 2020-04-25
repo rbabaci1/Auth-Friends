@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import { userLoginInitial } from '../initialStates';
+import { setLoading } from '../helpers';
 import Navbar from './Navbar';
 import Login from './Login';
 import AddFriend from './AddFriend';
@@ -22,10 +23,7 @@ export default function LandingPage() {
   const handleLogin = (e, history) => {
     e.preventDefault();
 
-    setUserInput({
-      ...userInput,
-      loading: true,
-    });
+    setLoading(userInput, setUserInput);
 
     // user authentication
 

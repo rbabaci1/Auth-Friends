@@ -1,3 +1,3 @@
-// export const setLoading = (state) => {
-//   return { ...state, loading: true };
-// };
+export const setLoading = (state, setUserInput) => {
+  setUserInput({ ...state, loading: true });
+};
