@@ -44,9 +44,19 @@ export default function LandingPage() {
     }, 1500);
   };
 
+  const handleLogout = (e, history) => {
+    e.preventDefault();
+
+    setUserInput({ ...userInput, isLoggedIn: false });
+    localStorage.removeItem('token');
+    history.push('/');
+  };
+
   return (
     <div className='landing-page'>
-      <loginContext.Provider value={{ isLoggedIn: userInput.isLoggedIn }}>
+      <loginContext.Provider
+        value={{ isLoggedIn: userInput.isLoggedIn, handleLogout }}
+      >
         <Route component={Navbar} />
       </loginContext.Provider>
 

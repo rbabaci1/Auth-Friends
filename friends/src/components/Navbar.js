@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import loginContext from '../contexts/loginContext';
 
-export default function Navbar(props) {
-  const { isLoggedIn } = useContext(loginContext);
-  console.log(props);
+export default function Navbar({ history }) {
+  const { isLoggedIn, handleLogout } = useContext(loginContext);
+
   return (
     <div className='nav-bar'>
       {isLoggedIn ? (
@@ -17,9 +17,9 @@ export default function Navbar(props) {
 
       <nav>
         {isLoggedIn ? (
-          <NavLink to='/logout' activeClassName='active-link'>
+          <a href='#' onClick={(e) => handleLogout(e, history)}>
             Log out
-          </NavLink>
+          </a>
         ) : (
           <NavLink to='/login' activeClassName='active-link'>
             Login
