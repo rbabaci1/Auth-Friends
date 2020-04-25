@@ -8,7 +8,7 @@ export default function Navbar({ history }) {
 
   return (
     <div className='nav-bar'>
-      {isLoggedIn || history.location.pathname === '/' ? (
+      {isLoggedIn ? (
         <h1 id='no-hover'>Welcome Friends!</h1>
       ) : (
         <Link to='/'>
@@ -18,18 +18,18 @@ export default function Navbar({ history }) {
 
       <nav>
         {isLoggedIn ? (
-          <a href='#' onClick={(e) => handleLogout(e, history)}>
-            {loading && <Spinner action='logout' />} Log out
-          </a>
+          <>
+            <a href='#' onClick={(e) => handleLogout(e, history)}>
+              {loading && <Spinner action='logout' />} Log out
+            </a>
+
+            <NavLink to='/addFriend' activeClassName='active-link'>
+              Add friend
+            </NavLink>
+          </>
         ) : (
           <NavLink to='/login' activeClassName='active-link'>
             Login
-          </NavLink>
-        )}
-
-        {isLoggedIn && (
-          <NavLink to='/addFriend' activeClassName='active-link'>
-            Add friend
           </NavLink>
         )}
       </nav>
