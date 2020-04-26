@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
-// import FriendsContext from '../contexts/FriendsContext';
+import React from 'react';
 
-export default React.memo(function FriendCard({ friend }) {
+export default React.memo(function FriendCard({ friend, removeFriend }) {
   return (
     <div className='friend-card'>
       <div className='buttons'>
-        <span id='delete'>X</span>
+        <span id='delete' onClick={() => removeFriend(friend.id)}>
+          X
+        </span>
         <span id='edit'>edit</span>
       </div>
 

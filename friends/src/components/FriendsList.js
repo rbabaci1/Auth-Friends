@@ -68,7 +68,11 @@ export default function FriendsList() {
 
           <div className='friends-list'>
             {friends.map((friend) => (
-              <FriendCard key={friend.id} friend={friend} />
+              <FriendCard
+                key={friend.id}
+                friend={friend}
+                removeFriend={removeFriend}
+              />
             ))}
           </div>
         </>
