@@ -6,7 +6,23 @@ import FriendsContext from '../contexts/FriendsContext';
 import { FriendsInitialState } from '../initialStates';
 
 export default function FriendsList() {
-  const [FriendsList, setFriendsList] = useState(FriendsInitialState);
+  const [friendsList, setFriendsList] = useState(FriendsInitialState);
+
+  useEffect(() => {
+    setFriendsList({ ...friendsList, loading: true });
+
+    axiosWithAuth
+      .get('/friends')
+      .then((res) => {
+        setFriendsList({
+          ...friendsList,
+          friends: res.data,
+          loading: false,
+          error: '',
+        });
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className='friends-list'>
