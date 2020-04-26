@@ -7,6 +7,13 @@ const AddFriend = () => {
   const [newFriend, setNewFriend] = useState(newFriendInitialState);
   const { addFriend } = useContext(FriendsContext);
 
+  const handleChange = (e) => {
+    setNewFriend({
+      ...newFriend,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleAdd = (e) => {
     e.preventDefault();
 
@@ -22,11 +29,35 @@ const AddFriend = () => {
               <p className='h4 text-center mb-4'>Add a friend</p>
 
               <div className='grey-text'>
-                <MDBInput label='Name' icon='user' group type='text' required />
+                <MDBInput
+                  onChange={handleChange}
+                  value={newFriend.name}
+                  name='name'
+                  label='Name'
+                  icon='user'
+                  type='text'
+                  required
+                />
 
-                <MDBInput label='Email' icon='envelope' type='email' required />
+                <MDBInput
+                  onChange={handleChange}
+                  value={newFriend.email}
+                  name='email'
+                  label='Email'
+                  icon='envelope'
+                  type='email'
+                  required
+                />
 
-                <MDBInput label='Age' icon='beer' type='number' required />
+                <MDBInput
+                  onChange={handleChange}
+                  value={newFriend.age}
+                  name='age'
+                  label='Age'
+                  icon='beer'
+                  type='number'
+                  required
+                />
               </div>
 
               <div className='text-center'>
