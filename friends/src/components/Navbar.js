@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import loginContext from '../contexts/loginContext';
+import UserContext from '../contexts/UserContext';
 import Spinner from './Spinner';
 
 export default function Navbar({ history }) {
-  const { loading, isLoggedIn, handleLogout } = useContext(loginContext);
+  const { loading, isLoggedIn, handleLogout } = useContext(UserContext);
 
   return (
     <div className='nav-bar'>

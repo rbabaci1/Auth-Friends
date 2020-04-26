@@ -1,5 +1,5 @@
 export const setLoading = (state, setUserInput) => {
-  setUserInput({ ...state, loading: true });
+  setUserInput({ ...state, loading: true, error: '' });
 };
 
 export const setError = (state, setUserInput) => {

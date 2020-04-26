@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
-import loginContext from '../contexts/loginContext';
+import UserContext from '../contexts/UserContext';
 import Spinner from './Spinner';
 
 export default function LoginPage({ history }) {
-  const { userInput, handleChange, handleLogin } = useContext(loginContext);
+  const { userInput, handleChange, handleLogin } = useContext(UserContext);
 
   return (
     <div className='form'>

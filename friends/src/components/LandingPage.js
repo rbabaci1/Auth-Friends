@@ -7,7 +7,7 @@ import Navbar from './Navbar';
 import LoginPage from './LoginPage';
 import AddFriend from './AddFriend';
 import Home from './Home';
-import loginContext from '../contexts/loginContext';
+import UserContext from '../contexts/UserContext';
 import FriendsList from './FriendsList';
 import PrivateRoute from '../PrivateRoutes/PrivateRoute';
 import axiosWithAuth from '../utils/axiosWithAuth';
@@ -62,7 +62,7 @@ export default function LandingPage() {
 
   return (
     <div className='landing-page'>
-      <loginContext.Provider
+      <UserContext.Provider
         value={{
           loading: userInput.loading,
           isLoggedIn,
@@ -70,13 +70,13 @@ export default function LandingPage() {
         }}
       >
         <Route component={Navbar} />
-      </loginContext.Provider>
+      </UserContext.Provider>
 
       <Route exact path='/' component={Home} />
 
-      <loginContext.Provider value={{ userInput, handleChange, handleLogin }}>
+      <UserContext.Provider value={{ userInput, handleChange, handleLogin }}>
         <Route path='/login' component={LoginPage} />
-      </loginContext.Provider>
+      </UserContext.Provider>
 
       {/* // private routes */}
       <PrivateRoute path='/friendsList' component={FriendsList} />
