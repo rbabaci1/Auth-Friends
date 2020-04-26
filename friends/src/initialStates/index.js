@@ -10,3 +10,9 @@ export const FriendsInitialState = {
   loading: false,
   error: '',
 };
+
+export const newFriendInitialState = {
+  name: '',
+  email: '',
+  age: '',
+};

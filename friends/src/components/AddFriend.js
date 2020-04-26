@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+import { newFriendInitialState } from '../initialStates';
 import FriendsContext from '../contexts/FriendsContext';
 
 const AddFriend = () => {
+  const [newFriend, setNewFriend] = useState(newFriendInitialState);
   const { addFriend } = useContext(FriendsContext);
 
   const handleAdd = (e) => {
