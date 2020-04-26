@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { MDBIcon } from 'mdbreact';
@@ -7,28 +7,33 @@ import FriendCard from './FriendCard';
 
 export default function FriendsList() {
   const [friendsList, setFriendsList] = useState(FriendsInitialState);
+  const { friends, loading, error } = friendsList;
 
-  useEffect(() => {
-    setFriendsList({ ...friendsList, loading: true });
+  const getData = useCallback(() => {
+    setFriendsList((friendsList) => ({ ...friendsList, loading: true }));
 
     axiosWithAuth
       .get('/friends')
       .then((res) => {
-        setFriendsList({
+        setFriendsList((friendsList) => ({
           ...friendsList,
           friends: res.data,
           loading: false,
           error: '',
-        });
+        }));
       })
       .catch((err) => {
-        setFriendsList({
+        setFriendsList((friendsList) => ({
           ...friendsList,
           error: 'Loading error, please try again in a few.',
-        });
+        }));
         console.error(err);
       });
   }, []);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   return (
     <div className='friends-list-wrapper'>
@@ -37,13 +42,27 @@ export default function FriendsList() {
         <MDBIcon icon='home' />
       </Link>
 
-      <h1>You are logged In!</h1>
+      {error && (
+        <div className='message-wrapper'>
+          <div className='message message-alert'>{error}</div>
+        </div>
+      )}
 
-      <div className='friends-list'>
-        {friendsList.friends.map((friend) => (
-          <FriendCard key={friend.id} friend={friend} />
-        ))}
-      </div>
+      {!error && (
+        <header>
+          <h1>These are all you friends!</h1>
+        </header>
+      )}
+
+      {loading && !error ? (
+        <h1>loading...</h1>
+      ) : (
+        <div className='friends-list'>
+          {friends.map((friend) => (
+            <FriendCard key={friend.id} friend={friend} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

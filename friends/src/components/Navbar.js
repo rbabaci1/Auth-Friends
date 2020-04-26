@@ -19,7 +19,7 @@ export default function Navbar({ history }) {
       <nav>
         {isLoggedIn ? (
           <>
-            <a href='#' onClick={(e) => handleLogout(e, history)}>
+            <a href='/' onClick={(e) => handleLogout(e, history)}>
               {loading && <Spinner action='logout' />} Log out
             </a>
 
