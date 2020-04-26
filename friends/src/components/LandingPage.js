@@ -11,6 +11,7 @@ import UserContext from '../contexts/UserContext';
 import FriendsList from './FriendsList';
 import PrivateRoute from '../PrivateRoutes/PrivateRoute';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import FriendsContext from '../contexts/FriendsContext';
 
 export default function LandingPage() {
   const [userInput, setUserInput] = useState(userInitialState);
@@ -60,6 +61,13 @@ export default function LandingPage() {
     }, 1200);
   };
 
+  const addFriend = (friend) => {
+    axiosWithAuth
+      .post('/friends', friend)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div>
       <UserContext.Provider
@@ -80,7 +88,10 @@ export default function LandingPage() {
 
       {/* // private routes */}
       <PrivateRoute path='/friendsList' component={FriendsList} />
-      <PrivateRoute path='/addFriend' component={AddFriend} />
+
+      <FriendsContext.Provider value={addFriend}>
+        <PrivateRoute path='/addFriend' component={AddFriend} />
+      </FriendsContext.Provider>
     </div>
   );
 }

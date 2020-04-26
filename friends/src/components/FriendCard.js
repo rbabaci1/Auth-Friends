@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+// import FriendsContext from '../contexts/FriendsContext';
 
 export default React.memo(function FriendCard({ friend }) {
   return (

@@ -36,13 +36,6 @@ export default function FriendsList() {
     getData();
   }, [getData]);
 
-  const addFriend = (friend) => {
-    axiosWithAuth
-      .post('/friends', friend)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.error(err));
-  };
-
   return (
     <div className='friends-list-wrapper'>
       <Link to='/'>
@@ -67,7 +60,7 @@ export default function FriendsList() {
       ) : (
         <div className='friends-list'>
           {friends.map((friend) => (
-            <FriendsContext.Provider key={friend.id} value={addFriend}>
+            <FriendsContext.Provider key={friend.id} value={'a'}>
               <FriendCard friend={friend} />
             </FriendsContext.Provider>
           ))}
