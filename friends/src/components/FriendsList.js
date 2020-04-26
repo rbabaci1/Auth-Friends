@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { MDBIcon } from 'mdbreact';
-import FriendsContext from '../contexts/FriendsContext';
 import { FriendsInitialState } from '../initialStates';
-import Friend from './Friend';
+import FriendCard from './FriendCard';
 
 export default function FriendsList() {
   const [friendsList, setFriendsList] = useState(FriendsInitialState);
@@ -41,7 +40,7 @@ export default function FriendsList() {
       <h1>You are logged In!</h1>
 
       {friendsList.friends.map((friend) => (
-        <Friend key={friend.id} friend={friend} />
+        <FriendCard key={friend.id} friend={friend} />
       ))}
     </div>
   );
