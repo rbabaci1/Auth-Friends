@@ -67,18 +67,45 @@ code {
   border-bottom: 1px solid;
 }
 
+// MDB library modifications
+
 .form {
   padding: 50px 0 10px 0;
   display: flex;
+  flex-direction: column;
   background-color: rgb(252, 250, 246);
   height: 90vh;
+
+  .message-wrapper {
+    display: flex;
+    justify-content: center;
+
+    .message {
+      color: #f35106;
+      font-size: 19px;
+      width: 300px;
+      text-align: center;
+    }
+    .message-alert {
+      background: hsla(0, 22%, 47%, 0.2);
+      border-radius: 3px;
+      margin: 20px 0;
+      padding: 5px 10px;
+    }
+  }
+
+  .h4 {
+    margin-bottom: 40px !important;
+  }
 }
+
 .row {
   justify-content: center;
 }
 .hide {
   display: none !important;
 }
+
 .grey-text {
   input {
     padding: 10px !important;

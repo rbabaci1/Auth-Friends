@@ -3,11 +3,17 @@ import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
 import loginContext from '../contexts/loginContext';
 import Spinner from './Spinner';
 
-export default function Login({ history }) {
+export default function LoginPage({ history }) {
   const { userInput, handleChange, handleLogin } = useContext(loginContext);
 
   return (
     <div className='form'>
+      {userInput.error && (
+        <div className='message-wrapper'>
+          <div className='message message-alert'>{userInput.error}</div>
+        </div>
+      )}
+
       <MDBContainer>
         <MDBRow>
           <MDBCol md='6'>

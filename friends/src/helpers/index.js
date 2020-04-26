@@ -3,5 +3,5 @@ export const setLoading = (state, setUserInput) => {
 };
 
 export const setError = (state, setUserInput) => {
-  setUserInput({ ...state, error: 'Username or Password not valid!' });
+  setUserInput({ ...state, error: "That wasn't correct. Try again?" });
 };

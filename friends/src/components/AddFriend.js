@@ -1,14 +1,14 @@
 import React from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 
-const Signup = () => {
+const AddFriend = () => {
   return (
     <div className='form'>
       <MDBContainer>
         <MDBRow>
           <MDBCol md='6'>
             <form>
-              <p className='h5 text-center mb-4'>Add a friend</p>
+              <p className='h4 text-center mb-4'>Add a friend</p>
 
               <div className='grey-text'>
                 <MDBInput label='Name' icon='user' group type='text' required />
@@ -29,4 +29,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default AddFriend;

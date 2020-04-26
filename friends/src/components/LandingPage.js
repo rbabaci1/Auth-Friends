@@ -4,7 +4,7 @@ import { useLocalStorage } from 'react-use';
 import { userInitialState } from '../initialStates';
 import { setLoading, setError } from '../helpers';
 import Navbar from './Navbar';
-import Login from './Login';
+import LoginPage from './LoginPage';
 import AddFriend from './AddFriend';
 import Home from './Home';
 import loginContext from '../contexts/loginContext';
@@ -75,7 +75,7 @@ export default function LandingPage() {
       <Route exact path='/' component={Home} />
 
       <loginContext.Provider value={{ userInput, handleChange, handleLogin }}>
-        <Route path='/login' component={Login} />
+        <Route path='/login' component={LoginPage} />
       </loginContext.Provider>
 
       {/* // private routes */}
