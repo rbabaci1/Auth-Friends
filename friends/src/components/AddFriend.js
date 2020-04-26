@@ -3,6 +3,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { withRouter } from 'react-router-dom';
 import { newFriendInitialState } from '../initialStates';
+import { SUCCESS, LOADING, ERROR } from '../reducer';
 
 const AddFriend = ({ history, dispatch }) => {
   const [newFriend, setNewFriend] = useState(newFriendInitialState);
@@ -14,13 +15,20 @@ const AddFriend = ({ history, dispatch }) => {
     });
   };
 
-  const handleAdd = (e) => {
+  const addNewFriend = (e) => {
     e.preventDefault();
+    dispatch({ type: LOADING });
 
     axiosWithAuth
-      .post('/friends', newFriend)
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+      .post('/friendss', newFriend)
+      .then((res) => dispatch({ type: SUCCESS, payload: res.data }))
+      .catch((err) => {
+        dispatch({
+          type: ERROR,
+          payload: "Sorry, can't add a friend now. Please try later!",
+        });
+        console.error(err);
+      });
 
     history.push('/friendsList');
   };
@@ -30,7 +38,7 @@ const AddFriend = ({ history, dispatch }) => {
       <MDBContainer>
         <MDBRow>
           <MDBCol md='6'>
-            <form onSubmit={handleAdd}>
+            <form onSubmit={addNewFriend}>
               <p className='h4 text-center mb-4'>Add a friend</p>
 
               <div className='grey-text'>
