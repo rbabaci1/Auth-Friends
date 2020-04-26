@@ -31,7 +31,7 @@ export default function FriendsList() {
   }, []);
 
   return (
-    <div className='friends-list'>
+    <div className='friends-list-wrapper'>
       <Link to='/'>
         {/* <MDBIcon icon='arrow-left' /> */}
         <MDBIcon icon='home' />
@@ -39,9 +39,11 @@ export default function FriendsList() {
 
       <h1>You are logged In!</h1>
 
-      {friendsList.friends.map((friend) => (
-        <FriendCard key={friend.id} friend={friend} />
-      ))}
+      <div className='friends-list'>
+        {friendsList.friends.map((friend) => (
+          <FriendCard key={friend.id} friend={friend} />
+        ))}
+      </div>
     </div>
   );
 }

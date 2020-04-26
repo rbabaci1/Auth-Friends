@@ -61,7 +61,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className='landing-page'>
+    <div>
       <UserContext.Provider
         value={{
           loading: userInput.loading,

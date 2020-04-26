@@ -67,6 +67,61 @@ code {
   border-bottom: 1px solid;
 }
 
+.friends-list {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  .friend-card {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: 1px solid rgb(194, 193, 193);
+    background-color: rgb(229, 250, 229);
+    margin: 20px;
+    width: 300px;
+    height: 200px;
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      box-sizing: border-box;
+      margin: 10px;
+
+      span {
+        border: 1px solid;
+        padding: 0 8px;
+        text-align: center;
+        font-size: 18px;
+
+        &:hover {
+          background: #fff;
+          cursor: pointer;
+        }
+      }
+
+      #delete {
+        color: red;
+      }
+      #edit {
+        color: green;
+      }
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 10px;
+
+      span {
+        font-weight: 400;
+        font-size: 20px;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
 // MDB library modifications
 
 .form {
