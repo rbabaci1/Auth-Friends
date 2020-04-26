@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useReducer } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, withRouter } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { MDBIcon } from 'mdbreact';
 import { friendsInitialState } from '../initialStates';
@@ -7,7 +7,7 @@ import FriendCard from './FriendCard';
 import AddFriend from './AddFriend';
 import friendsReducer, { LOADING, SUCCESS, ERROR } from '../reducer';
 
-export default function FriendsList() {
+function FriendsList({ history }) {
   const [state, dispatch] = useReducer(friendsReducer, friendsInitialState);
   const { friends, loading, error } = state;
 
@@ -33,10 +33,25 @@ export default function FriendsList() {
   }, [getData]);
 
   const removeFriend = (friendId) => {
+    dispatch({ type: LOADING });
+
     axiosWithAuth
       .delete(`/friends/${friendId}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+      .then((res) => dispatch({ type: SUCCESS, payload: res.data }))
+      .catch((err) => {
+        dispatch({
+          type: ERROR,
+          payload: "Sorry, can't remove this friend now. Please try later!",
+        });
+        console.error(err);
+      });
+  };
+
+  const editFriend = (friend) => {
+    history.push({
+      pathname: '/friendsList/addFriend',
+      state: friend,
+    });
   };
 
   return (
@@ -72,6 +87,7 @@ export default function FriendsList() {
                 key={friend.id}
                 friend={friend}
                 removeFriend={removeFriend}
+                editFriend={editFriend}
               />
             ))}
           </div>
@@ -80,3 +96,5 @@ export default function FriendsList() {
     </div>
   );
 }
+
+export default withRouter(FriendsList);

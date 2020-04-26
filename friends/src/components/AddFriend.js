@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { withRouter } from 'react-router-dom';
 import { newFriendInitialState } from '../initialStates';
 import { SUCCESS, LOADING, ERROR } from '../reducer';
 
-const AddFriend = ({ history, dispatch }) => {
+const AddFriend = (props) => {
+  console.log(props);
+  const { history, dispatch } = props;
   const [newFriend, setNewFriend] = useState(newFriendInitialState);
 
   const handleChange = (e) => {
@@ -20,7 +21,7 @@ const AddFriend = ({ history, dispatch }) => {
     dispatch({ type: LOADING });
 
     axiosWithAuth
-      .post('/friendss', newFriend)
+      .post('/friends', newFriend)
       .then((res) => dispatch({ type: SUCCESS, payload: res.data }))
       .catch((err) => {
         dispatch({
@@ -84,4 +85,4 @@ const AddFriend = ({ history, dispatch }) => {
   );
 };
 
-export default withRouter(AddFriend);
+export default AddFriend;
