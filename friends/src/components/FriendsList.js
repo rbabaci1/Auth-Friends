@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { MDBIcon } from 'mdbreact';
+import FriendsContext from '../contexts/FriendsContext';
 import { FriendsInitialState } from '../initialStates';
 import FriendCard from './FriendCard';
 
@@ -35,6 +36,13 @@ export default function FriendsList() {
     getData();
   }, [getData]);
 
+  const addFriend = (friend) => {
+    axiosWithAuth
+      .post('/friends', friend)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div className='friends-list-wrapper'>
       <Link to='/'>
@@ -59,7 +67,9 @@ export default function FriendsList() {
       ) : (
         <div className='friends-list'>
           {friends.map((friend) => (
-            <FriendCard key={friend.id} friend={friend} />
+            <FriendsContext.Provider key={friend.id} value={addFriend}>
+              <FriendCard friend={friend} />
+            </FriendsContext.Provider>
           ))}
         </div>
       )}
