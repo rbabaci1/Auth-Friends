@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+import FriendsContext from '../contexts/FriendsContext';
 
 const AddFriend = () => {
+  const { addFriend } = useContext(FriendsContext);
+
+  const handleAdd = (e) => {
+    e.preventDefault();
+
+    addFriend();
+  };
+
   return (
     <div className='form'>
       <MDBContainer>
         <MDBRow>
           <MDBCol md='6'>
-            <form>
+            <form onSubmit={handleAdd}>
               <p className='h4 text-center mb-4'>Add a friend</p>
 
               <div className='grey-text'>
