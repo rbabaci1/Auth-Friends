@@ -1,36 +1,32 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useReducer } from 'react';
 import { Link, Route } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { MDBIcon } from 'mdbreact';
 import { friendsInitialState } from '../initialStates';
 import FriendCard from './FriendCard';
 import AddFriend from './AddFriend';
+import friendsReducer, { LOADING, SUCCESS, ERROR } from '../reducer';
 
 export default function FriendsList() {
-  const [friendsList, setFriendsList] = useState(friendsInitialState);
-  const { friends, loading, error } = friendsList;
+  const [state, dispatch] = useReducer(friendsReducer, friendsInitialState);
+  const { friends, loading, error } = state;
 
   const getData = useCallback(() => {
-    setFriendsList((friendsList) => ({ ...friendsList, loading: true }));
+    dispatch({ type: LOADING });
 
     axiosWithAuth
       .get('/friends')
       .then((res) => {
-        setFriendsList((friendsList) => ({
-          ...friendsList,
-          friends: res.data,
-          loading: false,
-          error: '',
-        }));
+        dispatch({ type: SUCCESS, payload: res.data });
       })
       .catch((err) => {
-        setFriendsList((friendsList) => ({
-          ...friendsList,
-          error: 'Loading error, please try again in a few.',
-        }));
+        dispatch({
+          type: ERROR,
+          payload: 'Loading error, please try again in a few.',
+        });
         console.error(err);
       });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     getData();
