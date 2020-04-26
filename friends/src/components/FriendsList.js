@@ -4,6 +4,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 import { MDBIcon } from 'mdbreact';
 import FriendsContext from '../contexts/FriendsContext';
 import { FriendsInitialState } from '../initialStates';
+import Friend from './Friend';
 
 export default function FriendsList() {
   const [friendsList, setFriendsList] = useState(FriendsInitialState);
@@ -38,6 +39,10 @@ export default function FriendsList() {
       </Link>
 
       <h1>You are logged In!</h1>
+
+      {friendsList.friends.map((friend) => (
+        <Friend key={friend.id} friend={friend} />
+      ))}
     </div>
   );
 }
