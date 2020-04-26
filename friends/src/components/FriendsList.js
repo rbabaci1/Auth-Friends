@@ -32,6 +32,13 @@ export default function FriendsList() {
     getData();
   }, [getData]);
 
+  const removeFriend = (friendId) => {
+    axiosWithAuth
+      .delete(`/friends/${friendId}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div className='friends-list-wrapper'>
       <Link to='/'>
