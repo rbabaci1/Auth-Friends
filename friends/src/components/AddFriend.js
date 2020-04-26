@@ -2,10 +2,11 @@ import React, { useState, useContext } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 import { newFriendInitialState } from '../initialStates';
 import FriendsContext from '../contexts/FriendsContext';
+import { withRouter } from 'react-router-dom';
 
-const AddFriend = () => {
+const AddFriend = ({ history }) => {
   const [newFriend, setNewFriend] = useState(newFriendInitialState);
-  const { addFriend } = useContext(FriendsContext);
+  const addFriend = useContext(FriendsContext);
 
   const handleChange = (e) => {
     setNewFriend({
@@ -17,7 +18,8 @@ const AddFriend = () => {
   const handleAdd = (e) => {
     e.preventDefault();
 
-    addFriend();
+    addFriend(newFriend);
+    history.push('/friendsList');
   };
 
   return (
@@ -61,7 +63,7 @@ const AddFriend = () => {
               </div>
 
               <div className='text-center'>
-                <MDBBtn type='submit'>Register</MDBBtn>
+                <MDBBtn type='submit'>Add</MDBBtn>
               </div>
             </form>
           </MDBCol>
@@ -71,4 +73,4 @@ const AddFriend = () => {
   );
 };
 
-export default AddFriend;
+export default withRouter(AddFriend);
