@@ -73,7 +73,7 @@ code {
     justify-content: center;
 
     h1 {
-      margin: 30px 0 60px 0;
+      margin: 30px 0;
       border-bottom: 1px solid;
       width: fit-content;
     }
@@ -165,6 +165,10 @@ code {
     margin-bottom: 40px !important;
   }
 }
+.add-friend-form {
+  height: 100%;
+  padding: 10px 0 20px 0;
+}
 
 .row {
   justify-content: center;
@@ -180,7 +184,7 @@ code {
 }
 
 .fa-home {
-  font-size: 35px;
+  font-size: 32px;
   margin: 10px;
   color: gray;
   transition-duration: 0.4s;

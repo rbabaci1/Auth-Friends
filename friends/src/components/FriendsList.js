@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { MDBIcon } from 'mdbreact';
 import FriendsContext from '../contexts/FriendsContext';
 import { FriendsInitialState } from '../initialStates';
 import FriendCard from './FriendCard';
+import AddFriend from './AddFriend';
 
 export default function FriendsList() {
   const [friendsList, setFriendsList] = useState(FriendsInitialState);
@@ -39,7 +40,6 @@ export default function FriendsList() {
   return (
     <div className='friends-list-wrapper'>
       <Link to='/'>
-        {/* <MDBIcon icon='arrow-left' /> */}
         <MDBIcon icon='home' />
       </Link>
 
@@ -58,13 +58,17 @@ export default function FriendsList() {
       {loading && !error ? (
         <h1>loading...</h1>
       ) : (
-        <div className='friends-list'>
-          {friends.map((friend) => (
-            <FriendsContext.Provider key={friend.id} value={'a'}>
-              <FriendCard friend={friend} />
-            </FriendsContext.Provider>
-          ))}
-        </div>
+        <>
+          <Route path='/friendsList/addFriend' component={AddFriend} />
+
+          <div className='friends-list'>
+            {friends.map((friend) => (
+              <FriendsContext.Provider key={friend.id} value={'a'}>
+                <FriendCard friend={friend} />
+              </FriendsContext.Provider>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

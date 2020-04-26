@@ -1,12 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
-import { newFriendInitialState } from '../initialStates';
-import FriendsContext from '../contexts/FriendsContext';
+import axiosWithAuth from '../utils/axiosWithAuth';
 import { withRouter } from 'react-router-dom';
+import { newFriendInitialState } from '../initialStates';
 
 const AddFriend = ({ history }) => {
   const [newFriend, setNewFriend] = useState(newFriendInitialState);
-  const addFriend = useContext(FriendsContext);
 
   const handleChange = (e) => {
     setNewFriend({
@@ -18,12 +17,15 @@ const AddFriend = ({ history }) => {
   const handleAdd = (e) => {
     e.preventDefault();
 
-    addFriend(newFriend);
+    axiosWithAuth
+      .post('/friends', newFriend)
+      .catch((err) => console.error(err));
+
     history.push('/friendsList');
   };
 
   return (
-    <div className='form'>
+    <div className='form add-friend-form'>
       <MDBContainer>
         <MDBRow>
           <MDBCol md='6'>

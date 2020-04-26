@@ -27,7 +27,7 @@ export default function Navbar({ history }) {
               Friends
             </NavLink>
 
-            <NavLink to='/addFriend' activeClassName='active-link'>
+            <NavLink to='/friendsList/addFriend' activeClassName='active-link'>
               Add friend
             </NavLink>
           </>
