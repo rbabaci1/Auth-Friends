@@ -4,3 +4,9 @@ export const userInitialState = {
   loading: false,
   error: '',
 };
+
+export const FriendsInitialState = {
+  friends: [],
+  loading: false,
+  error: '',
+};
