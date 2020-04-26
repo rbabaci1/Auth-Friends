@@ -5,7 +5,7 @@ export const userInitialState = {
   error: '',
 };
 
-export const FriendsInitialState = {
+export const friendsInitialState = {
   friends: [],
   loading: false,
   error: '',

@@ -2,13 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, Route } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { MDBIcon } from 'mdbreact';
-import FriendsContext from '../contexts/FriendsContext';
-import { FriendsInitialState } from '../initialStates';
+import { friendsInitialState } from '../initialStates';
 import FriendCard from './FriendCard';
 import AddFriend from './AddFriend';
 
 export default function FriendsList() {
-  const [friendsList, setFriendsList] = useState(FriendsInitialState);
+  const [friendsList, setFriendsList] = useState(friendsInitialState);
   const { friends, loading, error } = friendsList;
 
   const getData = useCallback(() => {
@@ -63,9 +62,7 @@ export default function FriendsList() {
 
           <div className='friends-list'>
             {friends.map((friend) => (
-              <FriendsContext.Provider key={friend.id} value={'a'}>
-                <FriendCard friend={friend} />
-              </FriendsContext.Provider>
+              <FriendCard key={friend.id} friend={friend} />
             ))}
           </div>
         </>

@@ -5,7 +5,6 @@ import { userInitialState } from '../initialStates';
 import { setLoading, setError } from '../helpers';
 import Navbar from './Navbar';
 import LoginPage from './LoginPage';
-import AddFriend from './AddFriend';
 import Home from './Home';
 import UserContext from '../contexts/UserContext';
 import FriendsList from './FriendsList';
@@ -78,10 +77,7 @@ export default function LandingPage() {
         <Route path='/login' component={LoginPage} />
       </UserContext.Provider>
 
-      {/* // private routes */}
       <PrivateRoute path='/friendsList' component={FriendsList} />
-
-      {/* <PrivateRoute path='/addFriend' component={AddFriend} /> */}
     </div>
   );
 }
