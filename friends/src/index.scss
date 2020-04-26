@@ -110,3 +110,14 @@ code {
     padding: 10px !important;
   }
 }
+
+.fa-home {
+  font-size: 35px;
+  margin: 10px;
+  color: gray;
+  transition-duration: 0.4s;
+
+  &:hover {
+    color: rgb(53, 170, 160);
+  }
+}

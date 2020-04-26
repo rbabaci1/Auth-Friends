@@ -1,6 +1,6 @@
 export const userInitialState = {
-  username: '',
-  password: '',
+  username: 'Lambda School',
+  password: 'i<3Lambd4',
   loading: false,
   error: '',
 };

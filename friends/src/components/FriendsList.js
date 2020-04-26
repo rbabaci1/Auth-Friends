@@ -1,12 +1,14 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import axiosWithAuth from '../utils/axiosWithAuth';
 import { MDBIcon } from 'mdbreact';
 
 export default function FriendsList() {
-  // problem on page refresh
   return (
-    <div>
-      {/* <MDBIcon icon='arrow-left' onClick={() => <Redirect path='/' />} /> */}
+    <div className='friends-list'>
+      <Link to='/'>
+        <MDBIcon icon='home' />
+      </Link>
 
       <h1>You are logged In!</h1>
     </div>
