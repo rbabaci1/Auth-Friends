@@ -7,7 +7,6 @@ const friendsReducer = (state, { type, payload }) => {
     case LOADING:
       return { ...state, loading: true };
     case SUCCESS:
-      console.log(payload);
       return { ...state, friends: payload, loading: false, error: '' };
     case ERROR:
       return { ...state, loading: false, error: payload };

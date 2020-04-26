@@ -54,7 +54,10 @@ export default function FriendsList() {
         <h1>loading...</h1>
       ) : (
         <>
-          <Route path='/friendsList/addFriend' component={AddFriend} />
+          <Route
+            path='/friendsList/addFriend'
+            render={(props) => <AddFriend {...props} dispatch={dispatch} />}
+          />
 
           <div className='friends-list'>
             {friends.map((friend) => (

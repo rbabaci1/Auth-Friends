@@ -4,7 +4,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 import { withRouter } from 'react-router-dom';
 import { newFriendInitialState } from '../initialStates';
 
-const AddFriend = ({ history }) => {
+const AddFriend = ({ history, dispatch }) => {
   const [newFriend, setNewFriend] = useState(newFriendInitialState);
 
   const handleChange = (e) => {
@@ -19,6 +19,7 @@ const AddFriend = ({ history }) => {
 
     axiosWithAuth
       .post('/friends', newFriend)
+      .then((res) => console.log(res))
       .catch((err) => console.error(err));
 
     history.push('/friendsList');
