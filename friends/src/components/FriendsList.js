@@ -21,7 +21,13 @@ export default function FriendsList() {
           error: '',
         });
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        setFriendsList({
+          ...friendsList,
+          error: 'Loading error, please try again in a few.',
+        });
+        console.error(err);
+      });
   }, []);
 
   return (
