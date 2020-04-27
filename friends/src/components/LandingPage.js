@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { useLocalStorage } from 'react-use';
 import { userInitialState } from '../initialStates';
-import { setLoading, setError } from '../helpers';
 import Navbar from './Navbar';
 import LoginPage from './LoginPage';
-import Home from './Home';
 import UserContext from '../contexts/UserContext';
 import FriendsList from './FriendsList';
 import PrivateRoute from '../PrivateRoutes/PrivateRoute';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
-export default function LandingPage() {
+function LandingPage({ history }) {
   const [userInput, setUserInput] = useState(userInitialState);
   const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isLoggedIn', false);
 
@@ -22,38 +20,39 @@ export default function LandingPage() {
     });
   };
 
-  const handleLogin = (e, history) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
-    setLoading(userInput, setUserInput);
+    setUserInput({ ...userInput, loading: true, error: '' });
 
     setTimeout(() => {
-      axiosWithAuth
+      axiosWithAuth()
         .post('/login', userInput)
         .then((res) => {
-          setIsLoggedIn(true);
-          setUserInput({ ...userInput, loading: false, error: '' });
-
           const token = res.data.payload;
 
+          setIsLoggedIn(true);
+          setUserInput({ ...userInput, loading: false, error: '' });
           localStorage.setItem('token', token);
           history.push('/friendsList');
         })
         .catch((err) => {
-          setError(userInput, setUserInput);
+          setUserInput({
+            ...userInput,
+            error: "That wasn't correct. Try again?",
+          });
           console.error(err);
         });
     }, 1500);
   };
 
-  const handleLogout = (e, history) => {
+  const handleLogout = (e) => {
     e.preventDefault();
-    setLoading(userInput, setUserInput);
+    setUserInput({ ...userInput, loading: true, error: '' });
 
     setTimeout(() => {
       setIsLoggedIn(false);
       setUserInput(userInitialState);
-
       localStorage.removeItem('token');
       history.push('/');
     }, 1200);
@@ -71,7 +70,7 @@ export default function LandingPage() {
         <Route component={Navbar} />
       </UserContext.Provider>
 
-      <Route exact path='/' component={Home} />
+      <Route exact path='/' render={() => <div className='home'></div>} />
 
       <UserContext.Provider value={{ userInput, handleChange, handleLogin }}>
         <Route path='/login' component={LoginPage} />
@@ -81,3 +80,5 @@ export default function LandingPage() {
     </div>
   );
 }
+
+export default withRouter(LandingPage);

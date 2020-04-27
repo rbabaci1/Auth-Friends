@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { newFriendInitialState } from '../initialStates';
 import { SUCCESS, LOADING, ERROR } from '../reducer';
 
-const AddFriend = (props) => {
-  console.log(props);
-  const { history, dispatch } = props;
+const AddFriend = ({ dispatch, history, location }) => {
   const [newFriend, setNewFriend] = useState(newFriendInitialState);
+  const friendToEdit = location.state;
+
+  useEffect(() => {
+    setNewFriend(() => (friendToEdit ? friendToEdit : newFriendInitialState));
+  }, [friendToEdit]);
 
   const handleChange = (e) => {
     setNewFriend({
@@ -16,20 +19,33 @@ const AddFriend = (props) => {
     });
   };
 
-  const addNewFriend = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch({ type: LOADING });
 
-    axiosWithAuth
-      .post('/friends', newFriend)
-      .then((res) => dispatch({ type: SUCCESS, payload: res.data }))
-      .catch((err) => {
-        dispatch({
-          type: ERROR,
-          payload: "Sorry, can't add a friend now. Please try later!",
+    if (friendToEdit) {
+      axiosWithAuth()
+        .put(`/friends/${friendToEdit.id}`, newFriend)
+        .then((res) => dispatch({ type: SUCCESS, payload: res.data }))
+        .catch((err) => {
+          dispatch({
+            type: ERROR,
+            payload: "Sorry, can't edit this friend now. Please try later!",
+          });
+          console.error(err);
         });
-        console.error(err);
-      });
+    } else {
+      axiosWithAuth()
+        .post('/friends', newFriend)
+        .then((res) => dispatch({ type: SUCCESS, payload: res.data }))
+        .catch((err) => {
+          dispatch({
+            type: ERROR,
+            payload: "Sorry, can't add a friend now. Please try later!",
+          });
+          console.error(err);
+        });
+    }
 
     history.push('/friendsList');
   };
@@ -39,8 +55,10 @@ const AddFriend = (props) => {
       <MDBContainer>
         <MDBRow>
           <MDBCol md='6'>
-            <form onSubmit={addNewFriend}>
-              <p className='h4 text-center mb-4'>Add a friend</p>
+            <form onSubmit={handleSubmit}>
+              <p className='h4 text-center mb-4'>
+                {friendToEdit ? 'Update friend' : 'Add a friend'}
+              </p>
 
               <div className='grey-text'>
                 <MDBInput
@@ -75,7 +93,7 @@ const AddFriend = (props) => {
               </div>
 
               <div className='text-center'>
-                <MDBBtn type='submit'>Add</MDBBtn>
+                <MDBBtn type='submit'>{friendToEdit ? 'Update' : 'Add'}</MDBBtn>
               </div>
             </form>
           </MDBCol>
@@ -84,5 +102,4 @@ const AddFriend = (props) => {
     </div>
   );
 };
-
 export default AddFriend;

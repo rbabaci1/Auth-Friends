@@ -7,6 +7,7 @@ export default React.memo(function FriendCard({
 }) {
   return (
     <div className='friend-card'>
+      {console.log('render in friendCard')}
       <div className='buttons'>
         <span id='delete' onClick={() => removeFriend(friend.id)}>
           X

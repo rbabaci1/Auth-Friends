@@ -14,7 +14,7 @@ function FriendsList({ history }) {
   const getData = useCallback(() => {
     dispatch({ type: LOADING });
 
-    axiosWithAuth
+    axiosWithAuth()
       .get('/friends')
       .then((res) => {
         dispatch({ type: SUCCESS, payload: res.data });
@@ -32,27 +32,33 @@ function FriendsList({ history }) {
     getData();
   }, [getData]);
 
-  const removeFriend = (friendId) => {
-    dispatch({ type: LOADING });
+  const removeFriend = useCallback(
+    (friendId) => {
+      dispatch({ type: LOADING });
 
-    axiosWithAuth
-      .delete(`/friends/${friendId}`)
-      .then((res) => dispatch({ type: SUCCESS, payload: res.data }))
-      .catch((err) => {
-        dispatch({
-          type: ERROR,
-          payload: "Sorry, can't remove this friend now. Please try later!",
+      axiosWithAuth()
+        .delete(`/friends/${friendId}`)
+        .then((res) => dispatch({ type: SUCCESS, payload: res.data }))
+        .catch((err) => {
+          dispatch({
+            type: ERROR,
+            payload: "Sorry, can't remove this friend now. Please try later!",
+          });
+          console.error(err);
         });
-        console.error(err);
-      });
-  };
+    },
+    [dispatch]
+  );
 
-  const editFriend = (friend) => {
-    history.push({
-      pathname: '/friendsList/addFriend',
-      state: friend,
-    });
-  };
+  const editFriend = useCallback(
+    (friend) => {
+      history.push({
+        pathname: '/friendsList/addFriend',
+        state: friend,
+      });
+    },
+    [history]
+  );
 
   return (
     <div className='friends-list-wrapper'>

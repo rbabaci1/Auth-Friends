@@ -3,12 +3,12 @@ import { NavLink, Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import Spinner from './Spinner';
 
-export default function Navbar({ history }) {
+export default function Navbar({ location }) {
   const { loading, isLoggedIn, handleLogout } = useContext(UserContext);
 
   return (
     <div className='nav-bar'>
-      {history.location.pathname === '/' || isLoggedIn ? (
+      {location.pathname === '/' || isLoggedIn ? (
         <h1 id='no-hover'>Welcome Friends!</h1>
       ) : (
         <Link to='/'>
@@ -19,7 +19,7 @@ export default function Navbar({ history }) {
       <nav>
         {isLoggedIn ? (
           <>
-            <a href='/' onClick={(e) => handleLogout(e, history)}>
+            <a href='/' onClick={handleLogout}>
               {loading && <Spinner action='logout' />} Log out
             </a>
 
