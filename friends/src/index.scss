@@ -1,0 +1,195 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App {
+  h1 {
+    text-align: center;
+    margin: 15px 0;
+  }
+
+  .home {
+    width: 100%;
+    height: 90vh;
+    background-image: url('https://cdn.pixabay.com/photo/2018/05/14/16/54/cyber-3400789_960_720.jpg');
+    background-position: center;
+  }
+}
+.nav-bar {
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 0 15px;
+  background-color: rgb(53, 170, 160);
+
+  h1 {
+    font-size: 30px;
+    border: 1px solid;
+    padding: 0 3px;
+    color: black;
+
+    &:hover {
+      color: rgb(58, 58, 58);
+      font-weight: 500;
+    }
+  }
+  #no-hover {
+    pointer-events: none;
+  }
+
+  nav {
+    a {
+      font-size: 20px;
+      color: #f7f7f7;
+
+      margin: 0 15px;
+
+      &:hover {
+        border-bottom: 1px solid;
+      }
+    }
+  }
+}
+
+.active-link {
+  border-bottom: 1px solid;
+}
+
+.friends-list-wrapper {
+  header {
+    display: flex;
+    justify-content: center;
+
+    h1 {
+      margin: 30px 0;
+      border-bottom: 1px solid;
+      width: fit-content;
+    }
+  }
+
+  .friends-list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+
+    .friend-card {
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      border: 1px solid rgb(194, 193, 193);
+      background-color: rgb(229, 250, 229);
+      margin: 20px;
+      width: 330px;
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        margin: 10px;
+
+        span {
+          border: 1px solid;
+          padding: 0 8px;
+          text-align: center;
+          font-size: 18px;
+
+          &:hover {
+            background: #fff;
+            cursor: pointer;
+          }
+        }
+
+        #delete {
+          color: red;
+        }
+        #edit {
+          color: green;
+        }
+      }
+
+      h3 {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 10px;
+
+        span {
+          font-weight: 400;
+          font-size: 20px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+// error messages style
+.message-wrapper {
+  display: flex;
+  justify-content: center;
+
+  .message {
+    color: #f35106;
+    font-size: 19px;
+    text-align: center;
+  }
+  .message-alert {
+    background: hsla(0, 22%, 47%, 0.2);
+    margin: 20px 0;
+    padding: 5px 10px;
+  }
+}
+
+// MDB library modifications
+
+.form {
+  padding: 50px 0 10px 0;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(252, 250, 246);
+  height: 90vh;
+
+  .h4 {
+    margin-bottom: 40px !important;
+  }
+}
+.add-friend-form {
+  height: 100%;
+  padding: 10px 0 20px 0;
+}
+
+.row {
+  justify-content: center;
+}
+.hide {
+  display: none !important;
+}
+
+.grey-text {
+  input {
+    padding: 10px 5px !important;
+  }
+}
+
+.fa-home {
+  font-size: 32px;
+  margin: 10px;
+  color: gray;
+  transition-duration: 0.4s;
+
+  &:hover {
+    color: rgb(53, 170, 160);
+  }
+}
