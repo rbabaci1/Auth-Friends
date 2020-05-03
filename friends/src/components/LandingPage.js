@@ -76,7 +76,9 @@ function LandingPage({ history }) {
         <Route path='/login' component={LoginPage} />
       </UserContext.Provider>
 
-      <PrivateRoute path='/friendsList' component={FriendsList} />
+      <UserContext.Provider value={{ username: userInput.username }}>
+        <PrivateRoute path='/friendsList' component={FriendsList} />
+      </UserContext.Provider>
     </div>
   );
 }

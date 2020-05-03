@@ -1,15 +1,18 @@
-import React, { useEffect, useCallback, useReducer } from 'react';
-import { Link, Route, withRouter } from 'react-router-dom';
+import React, { useEffect, useCallback, useReducer, useContext } from 'react';
+import { Link, Route, useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { MDBIcon } from 'mdbreact';
 import { friendsInitialState } from '../initialStates';
 import FriendCard from './FriendCard';
 import AddFriend from './AddFriend';
 import friendsReducer, { LOADING, SUCCESS, ERROR } from '../reducer';
+import UserContext from '../contexts/UserContext';
 
-function FriendsList({ history }) {
+function FriendsList() {
+  const history = useHistory();
   const [state, dispatch] = useReducer(friendsReducer, friendsInitialState);
   const { friends, loading, error } = state;
+  const { username } = useContext(UserContext);
 
   const getData = useCallback(() => {
     dispatch({ type: LOADING });
@@ -62,9 +65,16 @@ function FriendsList({ history }) {
 
   return (
     <div className='friends-list-wrapper'>
-      <Link to='/'>
-        <MDBIcon icon='home' />
-      </Link>
+      <section className='loggedIn-icons'>
+        <Link to='/'>
+          <MDBIcon icon='home' />
+        </Link>
+
+        <div className='user-icon'>
+          <span>{username}</span>
+          <i className='far fa-user-circle' id='user-icon'></i>
+        </div>
+      </section>
 
       {error && (
         <div className='message-wrapper'>
@@ -103,4 +113,4 @@ function FriendsList({ history }) {
   );
 }
 
-export default withRouter(FriendsList);
+export default FriendsList;

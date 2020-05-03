@@ -1,6 +1,6 @@
 export const userInitialState = {
   username: 'rabah',
-  password: 'reactjs',
+  password: 'react-js',
   loading: false,
   error: '',
 };
