@@ -5,12 +5,13 @@ import Spinner from './Spinner';
 
 export default function LoginPage() {
   const { userInput, handleChange, handleLogin } = useContext(UserContext);
+  const { username, password, loading, error } = userInput;
 
   return (
     <div className='form'>
       {userInput.error && (
         <div className='message-wrapper'>
-          <div className='message message-alert'>{userInput.error}</div>
+          <div className='message message-alert'>{error}</div>
         </div>
       )}
 
@@ -23,7 +24,7 @@ export default function LoginPage() {
               <div className='grey-text'>
                 <MDBInput
                   onChange={handleChange}
-                  value={userInput.username}
+                  value={username}
                   name='username'
                   label='Type your username'
                   icon='user-circle'
@@ -34,7 +35,7 @@ export default function LoginPage() {
                 <MDBInput
                   onChange={handleChange}
                   name='password'
-                  value={userInput.password}
+                  value={password}
                   label='Type your password'
                   icon='lock'
                   type='password'
@@ -43,12 +44,9 @@ export default function LoginPage() {
               </div>
 
               <div className='text-center'>
-                {userInput.loading && <Spinner action='login' />}
+                {loading && <Spinner action='login' />}
 
-                <MDBBtn
-                  type='submit'
-                  className={userInput.loading ? 'hide' : ''}
-                >
+                <MDBBtn type='submit' className={loading ? 'hide' : ''}>
                   Login
                 </MDBBtn>
               </div>

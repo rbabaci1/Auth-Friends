@@ -17,6 +17,7 @@ function LandingPage({ history }) {
     setUserInput({
       ...userInput,
       [e.target.name]: e.target.value,
+      error: '',
     });
   };
 
