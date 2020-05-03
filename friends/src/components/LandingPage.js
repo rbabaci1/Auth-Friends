@@ -29,7 +29,7 @@ function LandingPage({ history }) {
       axiosWithAuth()
         .post('/login', userInput)
         .then((res) => {
-          const token = res.data.payload;
+          const token = res.data.payload.token;
 
           setIsLoggedIn(true);
           setUserInput({ ...userInput, loading: false, error: '' });
