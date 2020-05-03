@@ -94,6 +94,14 @@ const AddFriend = ({ dispatch, history, location }) => {
 
               <div className='text-center'>
                 <MDBBtn type='submit'>{friendToEdit ? 'Update' : 'Add'}</MDBBtn>
+
+                <MDBBtn
+                  type='button'
+                  color='danger'
+                  onClick={() => history.push('/friendsList')}
+                >
+                  Cancel
+                </MDBBtn>
               </div>
             </form>
           </MDBCol>

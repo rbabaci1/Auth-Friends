@@ -152,7 +152,6 @@ code {
 }
 
 // MDB library modifications
-
 .form {
   padding: 50px 0 10px 0;
   display: flex;
@@ -167,6 +166,9 @@ code {
 .add-friend-form {
   height: 100%;
   padding: 10px 0 20px 0;
+}
+.btn-danger {
+  padding: 0.84rem 1.5rem !important;
 }
 
 .row {
@@ -189,11 +191,9 @@ code {
 
 .fa-home,
 .fa-user-circle {
-  transition-duration: 1s;
   font-size: 32px;
   margin: 10px;
   color: gray;
-  transition-duration: 0.4s;
 
   &:hover {
     color: rgb(53, 170, 160);
