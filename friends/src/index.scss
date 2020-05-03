@@ -189,8 +189,7 @@ code {
   justify-content: space-between;
 }
 
-.fa-home,
-.fa-user-circle {
+.fa-home {
   font-size: 32px;
   margin: 10px;
   color: gray;
@@ -213,6 +212,8 @@ code {
   }
 
   #user-icon {
+    font-size: 32px;
+    margin: 10px;
     color: rgb(22, 160, 118);
   }
 }
