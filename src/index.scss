@@ -23,6 +23,14 @@ code {
     background-image: url('https://cdn.pixabay.com/photo/2018/05/14/16/54/cyber-3400789_960_720.jpg');
     background-position: center;
   }
+  @media (max-width: 600px) {
+    h1 {
+      margin: 0;
+    }
+    .home {
+      height: 85vh;
+    }
+  }
 }
 .nav-bar {
   height: 10vh;
@@ -31,7 +39,7 @@ code {
   align-items: center;
   flex-wrap: wrap;
   box-sizing: border-box;
-  padding: 0 15px;
+  padding: 10px 15px;
   background-color: rgb(53, 170, 160);
 
   h1 {
@@ -60,6 +68,23 @@ code {
       }
     }
   }
+
+  @media (max-width: 600px) {
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+
+    h1 {
+      font-size: 26px;
+    }
+
+    nav {
+      a {
+        margin: 0 14px;
+      }
+    }
+  }
 }
 
 .active-link {
@@ -75,6 +100,10 @@ code {
       margin: 30px 0;
       border-bottom: 1px solid;
       width: fit-content;
+
+      @media (max-width: 600px) {
+        font-size: 30px;
+      }
     }
   }
 
